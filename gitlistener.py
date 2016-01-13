@@ -2,6 +2,7 @@ from flask import Flask
 from flask import render_template, request
 from subprocess import call
 import git, json
+import os,sys
 
 app = Flask(__name__)
 
@@ -23,6 +24,10 @@ def index():
 
 		g = git.cmd.Git(filelocation)
 		g.pull()
+
+		f = open("keyfile.txt")
+		pw = f.read()
+		os.popen("sudo service apache2 restart", "w").write(pw)
 
 	else:
 		
