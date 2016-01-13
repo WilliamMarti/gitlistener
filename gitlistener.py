@@ -27,7 +27,7 @@ def index():
 		
 		f = open("keyfile.txt")
 		pw = f.read()
-		os.popen("sudo service apache2 restart", "w").write(pw)
+		os.popen("sudo service apache2 reload", "w").write(pw)
 
 	else:
 		
