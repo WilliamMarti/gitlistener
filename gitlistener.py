@@ -1,7 +1,7 @@
 from flask import Flask
-from flask import render_template, request
+from flask import request
 from subprocess import call
-import git, json, os
+import git, json, os, sys
 
 newname = "gitlistener"
 from ctypes import cdll, byref, create_string_buffer
@@ -10,9 +10,6 @@ libc = cdll.LoadLibrary('libc.so.6')    #Loading a 3rd party library C
 buff = create_string_buffer(len(newname)+1) #Note: One larger than the name (man prctl says that)
 buff.value = newname                 #Null terminated string as it should be
 libc.prctl(15, byref(buff), 0, 0, 0) #Refer to "#define" of "/usr/include/linux/prctl.h" for the misterious value 16 & arg[3..5] are zero as the man page says.
-
-import git, json
-import os,sys
 
 app = Flask(__name__)
 
